@@ -6,5 +6,5 @@ Feel free to use this but give credit to the Owners of NotEnoughCoins! <br>
 A user interface base for configuring stuff inside Minecraft! 
 ## PageOfWealth
 NotEnoughCoins' unofficial webpage designed and programmed by me.
-### BazaarFlips
+## BazaarFlips
 Old, unused and messy Discord bot for finding flips from Bazaar to Bazaar, Bazaar to NPC or NPC to Bazaar.

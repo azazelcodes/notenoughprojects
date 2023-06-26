@@ -1,0 +1,7 @@
+INFO:  Adding File to context from classpath: C:\Users\azazelos\.gradle\wrapper\dists\gradle-3.1-bin\37qejo6a26ua35lyn7h1u9v2n\gradle-3.1\lib\gradle-launcher-3.1.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\resources.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\rt.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\jsse.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\jce.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\charsets.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Eclipse Adoptium\jdk-8.0.362.9-hotspot\jre\lib\jfr.jar

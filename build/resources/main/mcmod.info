@@ -1,0 +1,16 @@
+[
+{
+  "modid": "coinui",
+  "name": "CoinUI - UI Mod",
+  "description": "CoinUI was part of BTTN, a multifunctional Hypixel Skyblock Mod to enhance the fliping experience, but is now ported to NotEnoughCoins. How'd u find this?",
+  "version": "unspecified",
+  "mcversion": "1.8.9",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["rayOrSomething"],
+  "credits": "The Forge and FML guys, for making the example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

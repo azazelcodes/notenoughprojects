@@ -1,6 +1,6 @@
 # NotEnoughProjects
-A collection of things I have done for "NotEnoughCoins" separated in the branches. <br>
-Feel free to use this but give credit to the Owners of NotEnoughCoins! <br>
+A collection of things I have done for `NotEnoughCoins` separated in their own branches. <br>
+Feel free to use this but give credit to the Owners of `NotEnoughCoins`! <br>
 <br>
 ## CoinUI
 A user interface base for configuring stuff inside Minecraft! 

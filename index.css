@@ -266,7 +266,6 @@ body {
 	width: 60.75rem;
 	height: 46.25rem;
 	gap: 3rem;
-	background-color: red;
 }
 
 .panel-bg {
@@ -445,7 +444,7 @@ body {
 	transform: rotate(0deg);
 	mix-blend-mode: normal;
 	position: absolute;
-	top: 44rem;
+	top: 50rem;
 }
 
 .extra-payment-title {

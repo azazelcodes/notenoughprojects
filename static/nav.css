@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:500,700,600,400");
+
+:root {
+	--background: #0f0f0f;
+	--highlight: #65f95f;
+	--text: #ffffff;
+	--button-text: #357f32;
+	--button-background: #171717;
+	--description-text: #aeaeae;
+	--panel-color: #1f1f1f;
+	--discord-blurple: #5865f2;
+	--banner-red: #f5454f;
+
+	--font-size-xs: 0.64vw;
+	--font-size-s: 0.85vw;
+	--font-size-m: 1vw;
+	--font-size-l: 1.05vw;
+	--font-size-xl: 1.75rem;
+	--font-size-xxl: 4.125vw;
+
+	--font-family-poppins: "Poppins";
+}
+
+.top-row {
+	display: flex;
+	align-content: center;
+	flex-shrink: 0;
+	justify-content: flex-start;
+	align-items: center;
+	z-index: 100;
+}
+
+.logo {
+	width: 6vw;
+	height: 10vh;
+	border-radius: 0px;
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1122520532701691995/ae4c4ffaf2fec5d7d5c5b28004bd1de5.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: relative;
+	opacity: 69%;
+	left: 0px;
+	top: 0px;
+}
+
+.button-text {
+	font-size: var(--font-size-l);
+	font-weight: 400;
+	font-family: Poppins;
+	line-height: normal;
+	text-transform: none;
+	color: var(--button-text);
+}
+
+.buttons {
+	position: relative;
+	margin-left: 10%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5%;
+	height: 100%;
+}
+
+.nav-button {
+	margin-right: 10%;
+	margin-left: 10%;
+	transition: opacity 0.5s ease-in-out;
+	text-decoration: none;
+}
+
+.unselected {
+	opacity: 45%;
+}
+
+.discord-button {
+	display: flex;
+	align-items: center;
+	width: 12.5vw;
+	height: 6vh;
+	border-radius: 2vw;
+	background-color: var(--button-background);
+	position: relative;
+	margin-left: 57.5%;
+	transition: background-color 0.25s ease-in-out;
+}
+
+.discord-text {
+	position: relative;
+	left: 1.125vw;
+	color: var(--button-text);
+	font-size: var(--font-size-s);
+	font-family: Poppins;
+	font-weight: 400;
+}
+
+.discord-icon {
+	display: inline-block;
+	width: 1.75vw;
+	height: auto;
+	font-size: inherit;
+	color: inherit;
+	vertical-align: -0.75vh;
+	margin-right: 0.5vw;
+}
+
+.nav-button:hover {
+	opacity: 100%;
+}
+
+.discord-button:hover {
+	background-color: #1f1f1f;
+}

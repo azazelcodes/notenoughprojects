@@ -1,0 +1,50 @@
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='nav.css') }}" />
+{% endblock %} 
+
+{% block content %}
+<div class="top-row">
+	<div class="logo"></div>
+	<div class="buttons">
+		<a
+			class="nav-button {% if current_page != 'home' %}unselected{% endif %}"
+			href="/"
+			style="cursor: pointer">
+			<span class="button-text">Homepage</span>
+		</a>
+		<a
+			class="nav-button {% if current_page != 'preview' %}unselected{% endif %}"
+			href="preview"
+			style="cursor: pointer">
+			<span class="button-text">Preview</span>
+		</a>
+		<a
+			class="nav-button {% if current_page != 'about' %}unselected{% endif %}"
+			href="about"
+			style="cursor: pointer">
+			<span class="button-text">About</span>
+		</a>
+	</div>
+	<div
+		class="discord-button"
+		onclick="window.open('https://discord.gg/ahflipper','discord');"
+		style="cursor: pointer">
+		<span class="discord-text">
+			<svg
+				class="discord-icon"
+				width="39"
+				height="32"
+				viewBox="0 0 39 32"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg">
+				<path
+					d="M31.9898 4.52058L31.7948 4.23291L31.4793 4.08717C29.2164 3.04187 26.8273 2.3002 24.373 1.88123L23.4992 1.73207L23.0694 2.5073C22.8821 2.84507 22.7046 3.18816 22.5371 3.53614C20.5345 3.30533 18.5122 3.30534 16.5096 3.53615C16.3421 3.18827 16.1646 2.84526 15.9775 2.50755L15.5472 1.73097L14.6722 1.8815C12.2171 2.30388 9.82713 3.04708 7.56266 4.09223L7.24357 4.23951L7.04797 4.53149C2.57771 11.2047 1.35289 17.7537 1.96066 24.1884L2.01287 24.7412L2.45803 25.073C5.09034 27.0354 8.03712 28.5281 11.1704 29.486L12.0169 29.7448L12.5421 29.0321C13.2482 28.0739 13.8741 27.0582 14.4133 25.9957C16.0799 26.4216 17.7975 26.6389 19.5273 26.6389C21.255 26.6389 22.9707 26.4221 24.6355 25.9972C25.1744 27.0601 25.8008 28.0757 26.5081 29.0332L27.0327 29.7434L27.8774 29.4865C31.0139 28.5322 33.9636 27.0399 36.5969 25.0754L37.0411 24.744L37.0938 24.1924C37.8072 16.7268 35.8664 10.2395 31.9898 4.52058ZM14.0581 19.027C13.2494 19.027 12.343 18.2316 12.343 16.9614C12.343 15.6695 13.2221 14.8826 14.0529 14.8826C14.9038 14.8826 15.7902 15.6887 15.7707 16.9419C15.7502 18.2568 14.8729 19.027 14.0581 19.027ZM24.9965 19.027C24.1872 19.027 23.284 18.2338 23.284 16.9614C23.284 15.6702 24.1624 14.8826 24.9965 14.8826C25.8452 14.8826 26.7261 15.6835 26.7065 16.9419C26.686 18.2583 25.81 19.027 24.9965 19.027Z"
+					stroke="#65F95F"
+					stroke-width="2.5" />
+			</svg>
+
+			join the discord
+		</span>
+	</div>
+</div>
+{% endblock %}

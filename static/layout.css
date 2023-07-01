@@ -1,0 +1,24 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.content {
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: [whitespace1] 2% [col] 94% [whitespace2] 4%;
+	grid-template-rows: [rowone] 13.5vh [rowtwo] 61.5vh [rowthree] 4vh;
+}
+
+.navbar {
+	grid-column: 2 / span 1;
+	grid-row: 1 / span 1;
+	align-self: center;
+	z-index: 100;
+}
+
+.body {
+	grid-column: 1 / span 3;
+	grid-row: 2 / span 3;
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PageOfWealth</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='layout.css') }}" />
+	</head>
+	<body>
+		<div class="content">
+			<div class="navbar">{% include 'nav.html' %}</div>
+			<div class="body">{% block content %} {% endblock %}</div>
+		</div>
+	</body>
+</html>

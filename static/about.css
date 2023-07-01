@@ -1,0 +1,262 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:500,700,600,400");
+
+:root {
+	--background: #0f0f0f;
+	--highlight: #65f95f;
+	--text: #ffffff;
+	--button-text: #357f32;
+	--button-background: #171717;
+	--description-text: #aeaeae;
+	--panel-color: #1f1f1f;
+	--discord-blurple: #5865f2;
+	--banner-red: #f5454f;
+
+	--font-size-xxs: 0.64vw;
+	--font-size-s: 0.85vw;
+	--font-size-m: 1vw;
+	--font-size-l: 1.05vw;
+	--font-size-xl: 2.75vw;
+	--font-size-xxl: 4.125vw;
+
+	--font-family-poppins: "Poppins";
+}
+
+* {
+	z-index: 5;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: var(--background);
+	overflow: hidden;
+}
+
+.container {
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: [whitespace1] 4% [firstc] 50% [secondc] 42% [whitespace2] 4%;
+	grid-template-rows: [whitespace3] 1.7vh [firstr] 56vh [secoondr] 23vh [whitespace4] 17.3vh;
+}
+
+.green-light {
+	background-color: var(--highlight);
+	position: absolute;
+	opacity: 85%;
+    width: 120vw;
+    height: 12.5vh;
+    bottom: 30%;
+	z-index: -1;
+    left: -10%;
+	filter: blur(10vw);
+    transform: rotate(-7deg);
+}
+
+.wave {
+	position: absolute;
+    bottom: -26vh;
+    width: 100vw;
+    height: auto;
+}
+
+.overlay {
+	position: absolute;
+    bottom: -15%;
+    width: 100vw;
+    height: auto;
+}
+
+
+.text-container {
+	grid-column: 2;
+	grid-row: 2;
+	display: flex;
+	align-items: start;
+    display: block;
+}
+
+.main-text-container {
+    width: 42vw;
+}
+
+.main-text {
+	font-size: 2.75vw;
+	font-weight: 700;
+	font-family: Poppins;
+	line-height: normal;
+	text-transform: none;   
+	color: white;
+}
+
+.sensei {
+    margin-top: 0.5vh;
+    height: 38vh;
+    position: relative;
+    left: -10vw;
+	background-image: url("https://media.discordapp.net/attachments/1122520502691434649/1123632505862504588/latest.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: relative;
+    transform: rotateY(180deg);
+    opacity: 69%;
+}
+
+.helper-container {
+	grid-column: 3;
+	grid-row: 2;
+    text-align: center;
+}
+
+.helper-headline {
+    margin-top: 1vh;
+    margin-bottom: 1.5vh;
+}
+
+.helper-headline-text {
+	font-size: var(--font-size-l);
+	font-weight: 400;
+	font-family: Poppins;
+	line-height: normal;
+	text-transform: none;
+	color: var(--description-text);
+}
+
+.helper-row {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.helper {
+    width: 4.5vw;
+    margin: 0.75vw;
+}
+
+.helper:nth-of-type(1) {
+    margin-left: 0vw;
+}
+
+.helper-picture {
+    width: 4.5vw;
+    height: 4.5vw;
+    border-radius: 100%;
+    margin-bottom: 0.5vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.helper-row:nth-of-type(1) > :nth-child(1) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123636966810984612/36107150.png");
+}
+
+.helper-row:nth-of-type(1) > :nth-child(2) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123633544762232962/reekid.png");
+}
+
+.helper-row:nth-of-type(1) > :nth-child(3) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123636562387804170/y17.gif");
+}
+
+.helper-row:nth-of-type(1) > :nth-child(4) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123633544019837058/krzysiu.png");
+}
+
+.helper-row:nth-of-type(1) > :nth-child(5) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123633543680102510/dragon.png");
+}
+
+.helper-row:nth-of-type(2) > :nth-child(1) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123633544380567603/moshi.png");
+}
+
+.helper-row:nth-of-type(2) > :nth-child(2) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123633542535073842/zulo.png");
+}
+
+.helper-row:nth-of-type(2) > :nth-child(3) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123633542866407557/algiz.png");
+}
+
+.helper-row:nth-of-type(2) > :nth-child(4) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123633543185170463/avatar.png");
+}
+
+.helper-row:nth-of-type(2) > :nth-child(5) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123633545089384488/saul.png");
+}
+
+.helper-row:nth-of-type(3) > :nth-child(1) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123637493166768298/slimshady.png");
+}
+
+.helper-row:nth-of-type(3) > :nth-child(2) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123637493514915860/yowf.png");
+}
+
+.helper-row:nth-of-type(3) > :nth-child(3) > :nth-child(1) {
+	background-image: url("https://cdn.discordapp.com/attachments/1122520502691434649/1123638154612715662/catfish.png");
+}
+
+.helper-text {
+	font-size: var(--font-size-s);
+	font-weight: 300;
+	font-family: Poppins;
+	line-height: normal;
+	text-transform: none;
+	color: var(--description-text);
+}
+
+.timeline-container {
+	grid-column: 2 / span 2;
+	grid-row: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.timeline-line {
+    height: 0.69vh;
+    width: 80vw;
+    background-color: var(--highlight);
+    position: absolute;
+}
+
+.timeline-point-container {
+    position: relative;
+    top: 1.69vh;
+    left: 6vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.timeline-point {
+    width: 13.35vw;
+    height: 5vh;
+}
+
+.timeline-dot {
+    background-color: var(--highlight);
+    height: 1.75vh;
+    width: 1.75vh;
+    border-radius: 100%;
+}
+
+.timeline-description-container {
+    position: relative;
+    height: 8vh;
+    width: 7.5vw;
+    left: -3.25vw;
+    text-align: center;
+}
+
+.timeline-description {
+	font-size: var(--font-size-s);
+	font-weight: 400;
+	font-family: Poppins;
+	line-height: normal;
+	text-transform: none;
+	color: var(--description-text);
+}

@@ -62,7 +62,7 @@ body {
 
 .overlay {
 	position: absolute;
-    bottom: -15%;
+    bottom: -26vh;
     width: 100vw;
     height: auto;
 }
@@ -209,54 +209,48 @@ body {
 	color: var(--description-text);
 }
 
-.timeline-container {
+.data-container {
 	grid-column: 2 / span 2;
-	grid-row: 3;
+	grid-row: 3 / span 1;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: flex-end;
+}
+
+.data {
+	width: 20vw;
+	height: 12.5vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.timeline-line {
-    height: 0.69vh;
-    width: 80vw;
-    background-color: var(--highlight);
-    position: absolute;
+.data-info-container {
+	display: block;
+	text-align: center;
 }
 
-.timeline-point-container {
-    position: relative;
-    top: 1.69vh;
-    left: 6vw;
-    display: flex;
-    justify-content: space-between;
-}
-
-.timeline-point {
-    width: 13.35vw;
-    height: 5vh;
-}
-
-.timeline-dot {
-    background-color: var(--highlight);
-    height: 1.75vh;
-    width: 1.75vh;
-    border-radius: 100%;
-}
-
-.timeline-description-container {
-    position: relative;
-    height: 8vh;
-    width: 7.5vw;
-    left: -3.25vw;
-    text-align: center;
-}
-
-.timeline-description {
-	font-size: var(--font-size-s);
-	font-weight: 400;
+.data-text {
+	display: block;
+	font-size: 1.25vw;
+	font-weight: 500;
 	font-family: Poppins;
 	line-height: normal;
-	text-transform: none;
+	text-transform: none;   
 	color: var(--description-text);
+}
+
+.data-number {
+	display: block;
+	display: block;
+	font-size: 1.75vw;
+	font-weight: 600;
+	font-family: Poppins;
+	line-height: normal;
+	text-transform: none;   
+	color: var(--description-text);
+	background: -webkit-linear-gradient(white, var(--highlight));
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }

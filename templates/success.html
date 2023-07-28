@@ -1,0 +1,20 @@
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='success.css') }}" />
+{% endblock %} 
+
+{% extends 'layout.html' %} 
+
+{% block content %}
+<div class="container">
+    <div class="fake-window">
+        <div class="window-controls">
+            <div class="close"></div>
+            <div class="minimize"></div>
+            <div class="maximize"></div>
+        </div>
+    </div>
+</div>
+<div class="background-container">
+    <div class="green-light"></div>
+</div>
+{% endblock %}

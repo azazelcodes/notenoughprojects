@@ -13,16 +13,16 @@
 			<span class="button-text">Homepage</span>
 		</a>
 		<a
-			class="nav-button {% if current_page != 'preview' %}unselected{% endif %}"
-			href="preview"
-			style="cursor: pointer">
-			<span class="button-text">Preview</span>
-		</a>
-		<a
 			class="nav-button {% if current_page != 'about' %}unselected{% endif %}"
 			href="about"
 			style="cursor: pointer">
 			<span class="button-text">About</span>
+		</a>
+		<a
+			class="nav-button {% if current_page != 'success' or current_page != 'error' %}unselected{% endif %}"
+			href="checkout"
+			style="cursor: pointer">
+			<span class="button-text">Buy</span>
 		</a>
 	</div>
 	<div

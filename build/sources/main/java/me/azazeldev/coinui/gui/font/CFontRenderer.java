@@ -10,13 +10,13 @@ package me.azazeldev.coinui.gui.font;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
-
-import me.azazeldev.coinui.utility.RenderUtils;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import org.lwjgl.opengl.GL11;
+import me.azazeldev.coinui.utility.RenderUtils;
 
-public class CFontRenderer extends CFont {
+public class CFontRenderer
+        extends CFont {
     protected CharData[] boldChars = new CharData[256];
     protected CharData[] italicChars = new CharData[256];
     protected CharData[] boldItalicChars = new CharData[256];
@@ -322,4 +322,3 @@ public class CFontRenderer extends CFont {
         }
     }
 }
-

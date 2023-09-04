@@ -1,6 +1,6 @@
 package me.azazeldev.coinui;
 
-import me.azazeldev.coinui.commands.sub.LBinHand;
+import me.azazeldev.coinui.modules.Modules;
 import me.azazeldev.coinui.utility.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
@@ -15,21 +15,19 @@ import me.azazeldev.coinui.commands.sub.Help;
 
 import java.io.IOException;
 
-// (partly) Taken from Mindlessly
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
 public class Main {
     public static String uuid;
     public static Main instance;
     public static CoinUICommand commandManager = new CoinUICommand(new Subcommand[] {
-            new Help(),
-            new LBinHand()
+            new Help()
     });
     public static boolean justClicked;
-    public static int page = 1;
+    public static int page = 0;
 
     @EventHandler
     public void init(FMLInitializationEvent event) throws IOException {
-        ProgressManager.ProgressBar progressBar = ProgressManager.push("CoinUI", 1);
+        ProgressManager.ProgressBar progressBar = ProgressManager.push("CoinUI", 2);
         progressBar.step("Registering events and commands");
         Config.init();
         instance = this;
@@ -37,6 +35,9 @@ public class Main {
         ClientCommandHandler.instance.registerCommand(commandManager);
         uuid = Minecraft.getMinecraft().getSession().getPlayerID();
         Reference.logger.info("Registered events and commands!");
+        progressBar.step("Initializing GUI");
+        Modules.init();
+        Reference.logger.info("Initialized GUI!");
         ProgressManager.pop(progressBar);
     }
 }

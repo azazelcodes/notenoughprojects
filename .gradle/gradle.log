@@ -29,7 +29,7 @@ See https://gist.github.com/TheCurle/fe7ad3ede188cbdd15c235cc75d52d4a for more i
 :shadowJar
 :reobfShadowJar
 :extractRangemapReplacedMain
-C:\Users\azazelos\Documents\Development Environment\gui\build\sources\main\java
+C:\Users\azazelos\Documents\Development Environment\notenoughprojects\notenoughprojects\build\sources\main\java
 :retromapReplacedMain
 remapping source...
 :sourceJar
@@ -39,4 +39,4 @@ remapping source...
 
 BUILD SUCCESSFUL
 
-Total time: 4.452 secs
+Total time: 3.019 secs

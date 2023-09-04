@@ -1,6 +1,10 @@
 package me.azazeldev.coinui.gui;
 
 import me.azazeldev.coinui.Main;
+import me.azazeldev.coinui.gui.font.FontLoaders;
+import me.azazeldev.coinui.modules.Category;
+import me.azazeldev.coinui.modules.Module;
+import me.azazeldev.coinui.modules.Modules;
 import me.azazeldev.coinui.utility.Element;
 import me.azazeldev.coinui.utility.RenderUtils;
 import net.minecraft.client.Minecraft;
@@ -40,6 +44,10 @@ public class GUI extends GuiScreen {
 
     static float windowX = 180, windowY = 50;
     static float width = 620, height = 360;
+
+    int lastTypedKeycode;
+    char lastTypedChar;
+    char emptyChar;
 
 
 
@@ -102,7 +110,7 @@ public class GUI extends GuiScreen {
         }
 
 
-        if (isHovered(windowX, windowY, windowX + width, windowY + 25, mouseX, mouseY) && Mouse.isButtonDown(0)) {
+        if (isHovered(windowX, windowY, windowX + width, windowY + 20, mouseX, mouseY) && Mouse.isButtonDown(0)) {
             if (dragX == 0 && dragY == 0) {
                 dragX = mouseX - windowX;
                 dragY = mouseY - windowY;
@@ -121,55 +129,71 @@ public class GUI extends GuiScreen {
             throw new RuntimeException(e);
         }
 
-
         // Window
         RenderUtils.drawRoundedRect(windowX, windowY, windowX + width, windowY + height, 20, Theme.bodyColor.getRGB());
-        Gui.drawRect((int) windowX, (int) windowY, (int) (windowX + width), (int) (windowY + 25), Theme.topColor.getRGB());
+        Gui.drawRect((int) windowX, (int) windowY, (int) (windowX + width), (int) (windowY + 20), Theme.topColor.getRGB());
 
         // Categories
         // Category Line
         Gui.drawRect((int) windowX + 2, (int) windowY + 48, (int) (windowX + width)- 2, (int) (windowY + 50), Theme.categoryColor.getRGB());
         // Category Indicators
-        RenderUtils.drawRoundedRect(windowX + 30, windowY + 28, windowX + 30 + 100, windowY + 58, 10, Theme.categoryColor.getRGB());
-        RenderUtils.drawRoundedRect(windowX + 30 + 25 + 100, windowY + 28, windowX + 30 + 100 + 100 + 15, windowY + 58, 10, Theme.categoryColor.getRGB());
-        // Category Cover
-        Gui.drawRect((int) windowX + 20, (int) windowY + 50, (int) (windowX + width - 20), (int) (windowY + 100), Theme.bodyColor.getRGB());
+        int cats = 0;
+        for (Category cat : Category.values()) {
+            RenderUtils.drawRoundedRect(windowX + 30  + (cats*125), windowY + 28, windowX + 30 + 100 + (cats*115), windowY + 58, 10, Theme.categoryColor.getRGB());
 
-        // Category Change Handling
-        if (isHovered(windowX + 32, windowY + 30, windowX + 28 + 100, windowY + 68, mouseX, mouseY) && Mouse.isButtonDown(0)) {
-            Main.page = 1;
-        }
-        if (isHovered(windowX + 32 + 25 + 100, windowY + 30, windowX + 28 + 100 + 15 + 100, windowY + 68, mouseX, mouseY) && Mouse.isButtonDown(0)) {
-            Main.page = 2;
-        }
+            // Category Switch Handling
+            if (isHovered(windowX + 32  + (cats*125), windowY + 30, windowX + 28 + 100 + (cats*115), windowY + 68, mouseX, mouseY) && Mouse.isButtonDown(0)) {
+                Main.page = cats;
+            }
+            // Category Cover (we draw this multiple times to cover up the current page indication)
+            Gui.drawRect((int) windowX + 20, (int) windowY + 50, (int) (windowX + width - 20), (int) (windowY + 100), Theme.bodyColor.getRGB());
+            // Current Indication
+            if (Main.page == cats) {
+                RenderUtils.drawRoundedRect(windowX + 32  + (cats*125), windowY + 30, windowX + 28 + 100 + (cats*115), windowY + 68, 10, Theme.bodyColor.getRGB());
+            }
 
-        // Current Indicator
-        if (Main.page == 1) {
-            RenderUtils.drawRoundedRect(windowX + 32, windowY + 30, windowX + 28 + 100, windowY + 68, 10, Theme.bodyColor.getRGB());
-        }
-        if (Main.page == 2) {
-            RenderUtils.drawRoundedRect(windowX + 32 + 25 + 100, windowY + 30, windowX + 28 + 100 + 15 + 100, windowY + 68, 10, Theme.bodyColor.getRGB());
+            char[] charArray = cat.toString().toLowerCase().toCharArray();
+            boolean foundSpace = true;
+
+            for (int i = 0; i < charArray.length; i++) {
+                if (Character.isLetter(charArray[i])) {
+                    if (foundSpace) charArray[i] = Character.toUpperCase(charArray[i]);
+                    foundSpace = false;
+                } else {
+                    foundSpace = true;
+                }
+            }
+            FontLoaders.arial24.drawString(String.valueOf(charArray), windowX + 30  + (cats*125) + (FontLoaders.arial24.getStringWidth(String.valueOf(charArray)) / 2), windowY + 32, Theme.descriptionColor.getRGB());
+
+            cats++;
         }
 
         // Elements
-        if (Main.page == 1) {
-            new Element().Toggle(windowX, windowY + 76, "Flipper", "Toggles NEC's flipper on or off.", true, false, mouseX, mouseY, "flipper");
-            new Element().Toggle(windowX, windowY + 126, "Flip Sounds", "Whether to send a sound when receiving a new batch of flips.", true, false, mouseX, mouseY, "sounds");
-            new Element().IntInput(windowX, windowY + 176, "Min. Profit", "How much profit is needed for a flip to show.", true, false, mouseX, mouseY, "minprofit", 0, 5000000, 100);
-            new Element().IntInput(windowX, windowY + 276, "Min. Profit %", "Needed % of the item's cost as profit for a flip to show.", true, false, mouseX, mouseY, "minpercent", 0, 10, 1);
-            new Element().IntInput(windowX, windowY + 226, "Min. Demand", "Minimum amount of sales needed for a flip to show.", true, false, mouseX, mouseY, "mindemand", 1, 10, 1);
-        }
-        if (Main.page == 2) {
-            new Element().Toggle(windowX, windowY + 76, "One-Click Buy", "Buy listing with one click.", true, false, mouseX, mouseY, "oneclickbuy");
-            new Element().Toggle(windowX, windowY + 126, "Page Flipper", "Find flips before the API refresh.", true, false, mouseX, mouseY, "pageflipper");
-            new Element().Toggle(windowX, windowY + 176, "Auto Buy", "Automatically buys flips for you.", true, false, mouseX, mouseY, "autobuy");
-            new Element().Toggle(windowX, windowY + 226, "Full AFK", "Buys flips and lists them on its own.", true, false, mouseX, mouseY, "fullafk");
-            new Element().Toggle(windowX, windowY + 276, "High Ping Mode", "Tries to buy the 2nd best flip first.", true, false, mouseX, mouseY, "hpm");
+        int mods = 0;
+        for (Module module : Modules.modules) {
+            if (Category.valueOf(String.valueOf(module.category)).ordinal() == Main.page) {
+                if (module.type.toString() == "TOGGLE") {
+                    new Element().Toggle(windowX, windowY + 76 + (76*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID);
+                }
+                if (module.type.toString() == "TEXT") {
+                    new Element().StrInput(windowX, windowY + 76 + (76*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID, lastTypedChar, lastTypedKeycode, false, new String[]{" ", "\"", "\\"});
+                }
+                /*if (module.type.toString() == "INTEGER") {
+                    // TODO: Figure out how to set the step, min & max in the module code!
+                    //new Element().IntInput(windowX, windowY + 76 + (76*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID, );
+                }*/
+                mods++;
+                lastTypedKeycode = -1;
+                lastTypedChar = emptyChar;
+            }
         }
     }
 
+    // Handle user input
     @Override
     protected void keyTyped(char typedChar, int keyCode) {
+        lastTypedKeycode = keyCode;
+        lastTypedChar = typedChar;
 
         if (!closed && keyCode == Keyboard.KEY_ESCAPE) {
             close = true;
@@ -191,8 +215,6 @@ public class GUI extends GuiScreen {
             e.printStackTrace();
         }
     }
-
-    // Handle user input
     @Override
     protected void actionPerformed(GuiButton button) {
     }

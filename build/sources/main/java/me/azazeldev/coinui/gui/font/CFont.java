@@ -1,12 +1,5 @@
 package me.azazeldev.coinui.gui.font;
 
-/*
- * Decompiled with CFR 0_132.
- *
- * Could not load the following classes:
- *  org.lwjgl.opengl.GL11
- */
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -18,7 +11,6 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 import org.lwjgl.opengl.GL11;
 
 public class CFont {
-    private final float imgSize = 512.0f;
     protected CharData[] charData = new CharData[256];
     protected Font font;
     protected boolean antiAlias;
@@ -102,45 +94,33 @@ public class CFont {
         float renderSRCY = srcY / 512.0f;
         float renderSRCWidth = srcWidth / 512.0f;
         float renderSRCHeight = srcHeight / 512.0f;
-        GL11.glTexCoord2f((float)(renderSRCX + renderSRCWidth), (float)renderSRCY);
-        GL11.glVertex2d((double)(x + width), (double)y);
-        GL11.glTexCoord2f((float)renderSRCX, (float)renderSRCY);
-        GL11.glVertex2d((double)x, (double)y);
-        GL11.glTexCoord2f((float)renderSRCX, (float)(renderSRCY + renderSRCHeight));
-        GL11.glVertex2d((double)x, (double)(y + height));
-        GL11.glTexCoord2f((float)renderSRCX, (float)(renderSRCY + renderSRCHeight));
-        GL11.glVertex2d((double)x, (double)(y + height));
-        GL11.glTexCoord2f((float)(renderSRCX + renderSRCWidth), (float)(renderSRCY + renderSRCHeight));
-        GL11.glVertex2d((double)(x + width), (double)(y + height));
-        GL11.glTexCoord2f((float)(renderSRCX + renderSRCWidth), (float)renderSRCY);
-        GL11.glVertex2d((double)(x + width), (double)y);
-    }
-
-    public int getStringHeight(String text) {
-        return this.getHeight();
-    }
-
-    public int getHeight() {
-        return (this.fontHeight - 8) / 2;
+        GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY);
+        GL11.glVertex2d(x + width, y);
+        GL11.glTexCoord2f(renderSRCX, renderSRCY);
+        GL11.glVertex2d(x, y);
+        GL11.glTexCoord2f(renderSRCX, renderSRCY + renderSRCHeight);
+        GL11.glVertex2d(x, y + height);
+        GL11.glTexCoord2f(renderSRCX, renderSRCY + renderSRCHeight);
+        GL11.glVertex2d(x, y + height);
+        GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY + renderSRCHeight);
+        GL11.glVertex2d(x + width, y + height);
+        GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY);
+        GL11.glVertex2d(x + width, y);
     }
 
     public int getStringWidth(String text) {
         int width = 0;
-        char[] arrc = text.toCharArray();
-        int n = arrc.length;
+        char[] arc = text.toCharArray();
+        int n = arc.length;
         int n2 = 0;
         while (n2 < n) {
-            char c = arrc[n2];
-            if (c < this.charData.length && c >= '\u0000') {
+            char c = arc[n2];
+            if (c < this.charData.length) {
                 width += this.charData[c].width - 8 + this.charOffset;
             }
             ++n2;
         }
         return width / 2;
-    }
-
-    public boolean isAntiAlias() {
-        return this.antiAlias;
     }
 
     public void setAntiAlias(boolean antiAlias) {
@@ -150,10 +130,6 @@ public class CFont {
         }
     }
 
-    public boolean isFractionalMetrics() {
-        return this.fractionalMetrics;
-    }
-
     public void setFractionalMetrics(boolean fractionalMetrics) {
         if (this.fractionalMetrics != fractionalMetrics) {
             this.fractionalMetrics = fractionalMetrics;
@@ -161,16 +137,12 @@ public class CFont {
         }
     }
 
-    public Font getFont() {
-        return this.font;
-    }
-
     public void setFont(Font font) {
         this.font = font;
         this.tex = this.setupTexture(font, this.antiAlias, this.fractionalMetrics, this.charData);
     }
 
-    protected class CharData {
+    protected static class CharData {
         public int width;
         public int height;
         public int storedX;

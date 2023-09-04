@@ -2,8 +2,6 @@ package me.azazeldev.coinui.commands.sub;
 
 import me.azazeldev.coinui.Main;
 import net.minecraft.command.ICommandSender;
-
-//Taken from Mindlessly
 public class Help implements Subcommand {
     @Override
     public String getCommandName() {

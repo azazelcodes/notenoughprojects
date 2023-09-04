@@ -1,19 +1,21 @@
 Symbol range map extraction starting
-Processing 17 files
+Processing 19 files
 processing me\azazeldev\coinui\Main.java
 processing me\azazeldev\coinui\Reference.java
 processing me\azazeldev\coinui\commands\CoinUICommand.java
 processing me\azazeldev\coinui\commands\sub\Help.java
-processing me\azazeldev\coinui\commands\sub\LBinHand.java
 processing me\azazeldev\coinui\commands\sub\Subcommand.java
 processing me\azazeldev\coinui\gui\GUI.java
 processing me\azazeldev\coinui\gui\Theme.java
-processing me\azazeldev\coinui\gui\elements\Element.java
 processing me\azazeldev\coinui\gui\font\CFont.java
 processing me\azazeldev\coinui\gui\font\CFontRenderer.java
 processing me\azazeldev\coinui\gui\font\FontLoaders.java
-processing me\azazeldev\coinui\utility\APIHandler.java
+processing me\azazeldev\coinui\modules\Category.java
+processing me\azazeldev\coinui\modules\Module.java
+processing me\azazeldev\coinui\modules\Modules.java
+processing me\azazeldev\coinui\modules\Type.java
 processing me\azazeldev\coinui\utility\Config.java
 processing me\azazeldev\coinui\utility\DelayedTask.java
+processing me\azazeldev\coinui\utility\Element.java
 processing me\azazeldev\coinui\utility\MainUtils.java
 processing me\azazeldev\coinui\utility\RenderUtils.java

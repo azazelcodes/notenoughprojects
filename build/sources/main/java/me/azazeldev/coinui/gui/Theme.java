@@ -11,6 +11,5 @@ public class Theme {
     public static Color descriptionColor = new Color(82, 82, 82);
     public static Color highlightColorA = new Color(101, 249, 95);
     public static Color highlightColorB = new Color(216, 228, 255);
-    public static Color highlightColorC = new Color(53, 127, 50);
     public static Color highlightColorD = new Color(255, 84, 84);
 }

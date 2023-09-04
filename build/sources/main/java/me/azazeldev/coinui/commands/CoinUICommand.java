@@ -16,8 +16,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-
-// STOLEN FROM MINDLESSLY hehe
 public class CoinUICommand extends CommandBase {
     private final Subcommand[] subcommands;
 

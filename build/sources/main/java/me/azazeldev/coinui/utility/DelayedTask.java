@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class DelayedTask {
     private int counter;
-    private Runnable runnable;
+    private final Runnable runnable;
 
     public DelayedTask(Runnable run, int ticks){
         counter = ticks;

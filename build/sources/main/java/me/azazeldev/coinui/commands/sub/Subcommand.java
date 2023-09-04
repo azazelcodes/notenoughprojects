@@ -1,8 +1,6 @@
 package me.azazeldev.coinui.commands.sub;
 
 import net.minecraft.command.ICommandSender;
-
-//Taken from Mindlessly
 public interface Subcommand {
     String getCommandName();
 

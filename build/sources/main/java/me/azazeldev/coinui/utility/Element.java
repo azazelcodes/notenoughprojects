@@ -1,5 +1,7 @@
 package me.azazeldev.coinui.utility;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import me.azazeldev.coinui.Main;
 import me.azazeldev.coinui.gui.Theme;
 import me.azazeldev.coinui.gui.font.FontLoaders;
@@ -23,20 +25,24 @@ public class Element {
         posY = centeredY ? posY + 22.5f : posY;
 
         RenderUtils.drawRoundedRect(posX, posY, posX + 350, posY + 45, 10, Theme.elementColor.getRGB());
-        RenderUtils.drawRoundedRect(posX + 280, posY, posX + 350, posY + 45, 10, Theme.overlayColor.getRGB());
-        FontLoaders.arial24.drawString(title, posX + 50, posY + 16, Theme.highlightColorB.getRGB());
+        RenderUtils.drawRoundedRect(posX + 225, posY, posX + 350, posY + 45, 10, Theme.overlayColor.getRGB());
+        FontLoaders.arial24.drawString(title, posX + 10, posY + 16, Theme.highlightColorB.getRGB());
 
         // Draw description
         int lineHeight = 0;
 
-        List<String> splits = FontLoaders.arial18.wrapWords(description, 120);
-        for (String e : splits.subList(0, Math.min(3, splits.size()))) {
-            FontLoaders.arial18.drawString(e, posX + 50 + FontLoaders.arial24.getStringWidth(title) + 15, posY + 10 + lineHeight, Theme.descriptionColor.getRGB());
+        List<String> splits = FontLoaders.arial18.wrapWords(description, 160);
+        for (String e : splits.subList(0, Math.min(4, splits.size()))) {
+            FontLoaders.arial18.drawString(e, posX + 10 + FontLoaders.arial24.getStringWidth(title) + 15, posY + 5 + lineHeight, Theme.descriptionColor.getRGB());
             lineHeight += 9;
         }
     }
 
     public static void Toggle(Float posX, Float posY, String title, String description, boolean centeredX, boolean centeredY, int mouseX, int mouseY, String configValueName) {
+        if (Config.getConfig().get(configValueName) == null) {
+            System.out.println("GUI ERROR: "+configValueName+" does not exist in the user's config. Try deleting the config file in %appdata%/.minecraft/NotEnoughCoins/");
+        }
+
         posX = centeredX ? posX + 135 : posX;
         posY = centeredY ? posY + 22.5f : posY;
 
@@ -53,9 +59,17 @@ public class Element {
             Main.justClicked = false;
         }
 
-        RenderUtils.drawRoundedRect(posX, posY, posX + 350, posY + 45, 10, Theme.elementColor.getRGB());
-        RenderUtils.drawRoundedRect(posX + 280, posY, posX + 350, posY + 45, 10, Theme.overlayColor.getRGB());
-        FontLoaders.arial24.drawString(title, posX + 50, posY + 16, Theme.highlightColorB.getRGB());
+        float objectLength = 350;
+        float objectHeight = 45;
+        int objectRoundness = 10;
+        float overlayLength = 70;
+        int overlayRoundness = 10;
+        float titleXoffset = 10;
+        float titleYoffset = 16;
+
+        RenderUtils.drawRoundedRect(posX, posY, posX + objectLength, posY + objectHeight, objectRoundness, Theme.elementColor.getRGB());
+        RenderUtils.drawRoundedRect(posX + (objectLength-overlayLength), posY, posX + objectLength, posY + objectHeight, overlayRoundness, Theme.overlayColor.getRGB());
+        FontLoaders.arial24.drawString(title, posX + titleXoffset, posY + titleYoffset, Theme.highlightColorB.getRGB());
 
         int highlightColor = configValue ? Theme.highlightColorD.getRGB() : Theme.highlightColorA.getRGB();
 
@@ -68,29 +82,46 @@ public class Element {
         // Draw description
         int lineHeight = 0;
 
-        List<String> splits = FontLoaders.arial18.wrapWords(description, 120);
-        for (String e : splits.subList(0, Math.min(3, splits.size()))) {
-            FontLoaders.arial18.drawString(e, posX + 50 + FontLoaders.arial24.getStringWidth(title) + 15, posY + 10 + lineHeight, Theme.descriptionColor.getRGB());
+        List<String> splits = FontLoaders.arial18.wrapWords(description, 160);
+        for (String e : splits.subList(0, Math.min(4, splits.size()))) {
+            FontLoaders.arial18.drawString(e, posX + 10 + FontLoaders.arial24.getStringWidth(title) + 15, posY + 5 + lineHeight, Theme.descriptionColor.getRGB());
             lineHeight += 9;
         }
     }
 
-    public void StrInput(Float posX, Float posY, String title, String description, boolean centeredX, boolean centeredY, int mouseX, int mouseY, String configValueName, char lastTypedChar, int lastTypedKeycode, boolean onlyAlphabetical, String[] exclusions) {
+    int marqueeLength = 0;
+    public void TextInput(Float posX, Float posY, String title, String description, boolean centeredX, boolean centeredY, int mouseX, int mouseY, String configValueName, char lastTypedChar, int lastTypedKeycode, boolean onlyAlphabetical, String[] exclusions) {
+        if (Config.getConfig().get(configValueName) == null) {
+            System.out.println("GUI ERROR: "+configValueName+" does not exist in the user's config. Try deleting the config file in %appdata%/.minecraft/NotEnoughCoins/");
+        }
+
         String currentValue = Config.getConfig().get(configValueName).getAsString();
 
         posX = centeredX ? posX + 135 : posX;
         posY = centeredY ? posY + 22.5f : posY;
 
-        RenderUtils.drawRoundedRect(posX, posY, posX + 350, posY + 45, 10, Theme.elementColor.getRGB());
-        RenderUtils.drawRoundedRect(posX + 225, posY, posX + 350, posY + 45, 10, Theme.overlayColor.getRGB());
-        FontLoaders.arial24.drawString(title, posX + 10, posY + 16, Theme.highlightColorB.getRGB());
+        float objectLength = 350;
+        float objectHeight = 45;
+        int objectRoundness = 10;
+        float overlayLength = 125;
+        int overlayRoundness = 10;
+        float titleXoffset = 10;
+        float titleYoffset = 16;
+
+        RenderUtils.drawRoundedRect(posX, posY, posX + objectLength, posY + objectHeight, objectRoundness, Theme.elementColor.getRGB());
+        RenderUtils.drawRoundedRect(posX + (objectLength-overlayLength), posY, posX + objectLength, posY + objectHeight, overlayRoundness, Theme.overlayColor.getRGB());
+        FontLoaders.arial24.drawString(title, posX + titleXoffset, posY + titleYoffset, Theme.highlightColorB.getRGB());
 
         // Draw Input
-        RenderUtils.drawRoundedRect(posX + 250, posY + 11.875f, posX + 330, posY + 34.875f, 1, Theme.categoryColor.getRGB());
+        // TODO: Have not done y variables yet cuz im confusion
+        float startOffset = 25;
+        float inputLength = 80;
+        int maxMarqueeLength = 120;
+        RenderUtils.drawRoundedRect(posX + ((objectLength-overlayLength)+startOffset), posY + 11.875f, posX + (((objectLength-overlayLength)+startOffset)+inputLength), posY + 34.875f, 1, Theme.categoryColor.getRGB());
 
         List<String> exclusionList = Arrays.asList(exclusions);
 
-        // Handle new chars
+        // Handle new chwars
         // https://minecraft.fandom.com/wiki/Key_codes#Keyboard_codes CHECK THIS BEFORE DOING ANYTHING
         if (lastTypedKeycode == 29) {
             lastRememberedKeycode = 29;
@@ -102,8 +133,7 @@ public class Element {
             lastRememberedKeycode = -1;
         }
 
-        if (lastTypedKeycode != -1 && lastTypedKeycode != 184 && lastTypedKeycode != 56 && lastTypedKeycode != 29 && lastTypedKeycode != 24) {
-            System.out.println("Keycode: "+lastTypedKeycode);
+        if (lastTypedKeycode != -1 && lastTypedKeycode != 184 && lastTypedKeycode != 56 && lastTypedKeycode != 29 && lastTypedKeycode != 14) {
             if (onlyAlphabetical) {
                 if (Character.isAlphabetic(lastTypedChar) || exclusionList.contains(Character.toString(lastTypedChar))) {
                     Config.write(configValueName, Config.gson.toJsonTree(currentValue + lastTypedChar));
@@ -112,7 +142,6 @@ public class Element {
                 Config.write(configValueName, Config.gson.toJsonTree(currentValue + lastTypedChar));
             }
         }
-
         currentValue = Config.getConfig().get(configValueName).getAsString();
         if (lastTypedKeycode == 14 && !currentValue.equals("")) {
             Config.write(configValueName, Config.gson.toJsonTree(currentValue.substring(0, currentValue.length() - 1)));
@@ -126,13 +155,28 @@ public class Element {
         currentValue = Config.getConfig().get(configValueName).getAsString();
         if (!currentValue.equals("")) {
             String shownValue = currentValue;
-            System.out.println(shownValue);
-            System.out.println(""+(FontLoaders.arial18.getStringWidth(shownValue) + posX));
-            System.out.println(""+(posX + 100));
             while (FontLoaders.arial18.getStringWidth(shownValue) + posX > posX + 70) {
-                System.out.println(shownValue);
                 if (isHovered(posX + 255, posY + 11, posX + 325, posY + 32.75f, mouseX, mouseY)) {
-                    shownValue = shownValue.substring(0, shownValue.length() - 1);
+                    // Calculate the index of the first character to be shown
+                    int startIndex = marqueeLength % currentValue.length();
+
+                    // Calculate the index of the last character to be shown
+                    int endIndex = (marqueeLength + (currentValue.length()-1 / maxMarqueeLength)) % currentValue.length();
+
+                    // Create the shownValue based on the calculated indices
+                    if (startIndex <= endIndex) {
+                        shownValue = currentValue.substring(startIndex, endIndex + 1);
+                    } else {
+                        shownValue = currentValue.substring(startIndex) + currentValue.substring(0, endIndex + 1);
+                    }
+
+                    // Increment marqueeLength
+                    marqueeLength++;
+
+                    // Reset marqueeLength to 0 if it reaches 120
+                    if (marqueeLength == maxMarqueeLength + 1) {
+                        marqueeLength = 0;
+                    }
                 } else {
                     shownValue = shownValue.substring(1);
                 }
@@ -151,30 +195,40 @@ public class Element {
             lineHeight += 9;
         }
     }
-    public void IntInput(float posX, float posY, String title, String description, boolean centeredX, boolean centeredY, int mouseX, int mouseY, String configValueName, int min, int max, int step) {
-        max = max + 1;
+    public void Slider(float posX, float posY, String title, String description, boolean centeredX, boolean centeredY, int mouseX, int mouseY, String configValueName) {
+        if (Config.getConfig().get(configValueName) == null) {
+            System.out.println("GUI ERROR: "+configValueName+" does not exist in the user's config. Try deleting the config file in %appdata%/.minecraft/NotEnoughCoins/");
+        }
+        float min = (float) Config.getConfig().get(configValueName).getAsJsonObject().get("min").getAsDouble();
+        float max = (float) Config.getConfig().get(configValueName).getAsJsonObject().get("max").getAsDouble();
+        int step = Config.getConfig().get(configValueName).getAsJsonObject().get("step").getAsInt();
 
         // Adjust position
         posX = centeredX ? posX + 135 : posX;
         posY = centeredY ? posY + 22.5f : posY;
 
-        // Draw background rectangles
-        RenderUtils.drawRoundedRect(posX, posY, posX + 350, posY + 45, 10, Theme.elementColor.getRGB());
-        RenderUtils.drawRoundedRect(posX + 230, posY, posX + 350, posY + 45, 10, Theme.overlayColor.getRGB());
+        float objectLength = 350;
+        float objectHeight = 45;
+        int objectRoundness = 10;
+        float overlayLength = 125;
+        int overlayRoundness = 10;
+        float titleXoffset = 10;
+        float titleYoffset = 16;
 
-        // Draw title
-        FontLoaders.arial24.drawString(title, posX + 50, posY + 16, Theme.highlightColorB.getRGB());
+        RenderUtils.drawRoundedRect(posX, posY, posX + objectLength, posY + objectHeight, objectRoundness, Theme.elementColor.getRGB());
+        RenderUtils.drawRoundedRect(posX + (objectLength-overlayLength), posY, posX + objectLength, posY + objectHeight, overlayRoundness, Theme.overlayColor.getRGB());
+        FontLoaders.arial24.drawString(title, posX + titleXoffset, posY + titleYoffset, Theme.highlightColorB.getRGB());
 
         // Draw bar
         float barStartX = posX + 253;
         float barEndX = posX + 327;
         float barCenterY = posY + 21.25f;
-        RenderUtils.drawCircle(barStartX, barCenterY, 10, Theme.highlightColorA.getRGB());
-        RenderUtils.drawCircle(barEndX, barCenterY, 10, Theme.highlightColorA.getRGB());
+        RenderUtils.drawCircle(barStartX-1, barCenterY, 10, Theme.highlightColorA.getRGB());
+        RenderUtils.drawCircle(barEndX-1, barCenterY, 10, Theme.highlightColorA.getRGB());
         RenderUtils.drawRect(barStartX, posY + 11f, barEndX, posY + 31.75f, Theme.highlightColorA.getRGB());
 
         // Calculate slider position
-        float sliderPos = (posX + 245) + (((Config.getConfig().get(configValueName).getAsInt() - min) / (float) (max - min)) * 88f);
+        float sliderPos = (posX + 245f) + ((((int) Config.getConfig().get(configValueName).getAsJsonObject().get("value").getAsDouble() - min) / (max - min)) * 94f);
 
         // Draw slider
         float sliderRadius = 2.5f;
@@ -182,14 +236,14 @@ public class Element {
         RenderUtils.drawCircle(sliderPos, posY + 37f, sliderRadius, Theme.highlightColorB.getRGB());
         RenderUtils.drawRect((sliderPos - sliderRadius), posY + 9.5f, (sliderPos + 2.25f), posY + 37f, Theme.highlightColorA.getRGB());
 
-        int newValue = (int) ((((sliderPos + (mouseX - sliderPos)) - (posX + 245)) / (88f / (max - min))) * step) + min;
+        double newValue = (((sliderPos + (mouseX - sliderPos) - (posX + 244f)) / (94f / (max - min))) * step + min);
         // Update config value on click
-        if (isHovered(posX + 240, posY, posX + 350, posY + 45, mouseX, mouseY) && Mouse.isButtonDown(0) && newValue < max) {
-            Config.write(configValueName, Config.gson.toJsonTree(newValue));
+        if (isHovered(posX + 244f, posY, posX + 338f, posY + 45, mouseX, mouseY) && Mouse.isButtonDown(0) && newValue < max) {
+            Config.write(configValueName, new Gson().fromJson("{\"value\":"+newValue+",\"min\":"+min+",\"max\":"+max+",\"step\":"+step+"}", JsonObject.class));
         }
 
         // Draw current value
-        int currentValue = Config.getConfig().get(configValueName).getAsInt();
+        double currentValue = Math.round(Config.getConfig().get(configValueName).getAsJsonObject().get("value").getAsDouble());
         String formattedValue = MainUtils.formatNumber(currentValue);
         int valueWidth = FontLoaders.arial18.getStringWidth(formattedValue);
         FontLoaders.arial18.drawString(formattedValue, posX + 335 - valueWidth, posY + 35, Theme.descriptionColor.getRGB());
@@ -197,9 +251,9 @@ public class Element {
         // Draw description
         int lineHeight = 0;
 
-        List<String> splits = FontLoaders.arial18.wrapWords(description, 120);
-        for (String e : splits.subList(0, Math.min(3, splits.size()))) {
-            FontLoaders.arial18.drawString(e, posX + 50 + FontLoaders.arial24.getStringWidth(title) + 15, posY + 10 + lineHeight, Theme.descriptionColor.getRGB());
+        List<String> splits = FontLoaders.arial18.wrapWords(description, 160);
+        for (String e : splits.subList(0, Math.min(4, splits.size()))) {
+            FontLoaders.arial18.drawString(e, posX + 10 + FontLoaders.arial24.getStringWidth(title) + 15, posY + 5 + lineHeight, Theme.descriptionColor.getRGB());
             lineHeight += 9;
         }
     }

@@ -1,6 +1,7 @@
 package me.azazeldev.coinui.modules;
 
 import com.google.gson.JsonElement;
+import me.azazeldev.coinui.utility.Config;
 
 public class Module {
 
@@ -19,6 +20,10 @@ public class Module {
         this.type = type;
         this.internalID = internalID;
         this.defaultValue = defaultValue;
+
+        if (!Config.getConfig().has(internalID)) {
+            Config.write(internalID, defaultValue);
+        }
     }
 
     public JsonElement getDefaultValue() {

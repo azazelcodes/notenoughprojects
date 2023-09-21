@@ -173,15 +173,14 @@ public class GUI extends GuiScreen {
         for (Module module : Modules.modules) {
             if (Category.valueOf(String.valueOf(module.category)).ordinal() == Main.page) {
                 if (module.type.toString() == "TOGGLE") {
-                    new Element().Toggle(windowX, windowY + 76 + (76*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID);
+                    new Element().Toggle(windowX, windowY + 78 + (64*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID);
                 }
                 if (module.type.toString() == "TEXT") {
-                    new Element().StrInput(windowX, windowY + 76 + (76*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID, lastTypedChar, lastTypedKeycode, false, new String[]{" ", "\"", "\\"});
+                    new Element().TextInput(windowX, windowY + 78 + (64*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID, lastTypedChar, lastTypedKeycode, false, new String[]{" ", "\"", "\\"});
                 }
-                /*if (module.type.toString() == "INTEGER") {
-                    // TODO: Figure out how to set the step, min & max in the module code!
-                    //new Element().IntInput(windowX, windowY + 76 + (76*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID, );
-                }*/
+                if (module.type.toString() == "SLIDER") {
+                    new Element().Slider(windowX, windowY + 78 + (64*mods), module.name, module.description, true, false, mouseX, mouseY, module.internalID);
+                }
                 mods++;
                 lastTypedKeycode = -1;
                 lastTypedChar = emptyChar;

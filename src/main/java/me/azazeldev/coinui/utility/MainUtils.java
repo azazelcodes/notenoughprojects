@@ -2,7 +2,7 @@ package me.azazeldev.coinui.utility;
 
 public class MainUtils {
 
-    public static String formatNumber(int number) {
+    public static String formatNumber(double number) {
         if (number < 1000) {
             return String.valueOf(number);
         } else if (number < 1000000) {
